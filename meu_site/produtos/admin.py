@@ -1,6 +1,14 @@
 from django.contrib import admin
 from .models import Produto, Categoria
 
-admin.site.register(Produto)
-admin.site.register(Categoria)
+
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+
+@admin.register(Produto)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'categoria', 'link_compra')
+    list_filter = ('categoria',)
+
 
