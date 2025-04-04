@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+
+    <!-- Menu de Categorias -->
+    <h2>Categorias</h2>
+    <ul>
+        <li><a href="{% url 'lista_produtos' %}">Todas</a></li>
+        {% for categoria in categorias %}
+            <li><a href="{% url 'produtos_por_categoria' categoria.id %}">{{ categoria.nome }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Lista de Produtos -->
+    <ul>
+        {% for produto in produtos %}
+            <li>
+                <h2>{{ produto.nome }}</h2>
+                <p>{{ produto.descricao }}</p>
+                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" width="200">
+                <br>
+                <a href="{{ produto.link_compra }}" target="_blank">Comprar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
